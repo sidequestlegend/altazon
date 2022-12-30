@@ -1,0 +1,49 @@
+<!--Outlet Store-->
+<template id="outletStore">
+    <a-entity class="lot-container">
+        <!--Floor-->
+        <a-entity class="carpet" material="shader:flat;src:url(/assets/images/floor.jpg);color:#00ff00;repeat: 10 10"
+                  altspace-cursor-collider="enabled: true" geometry="primitive: plane;" position="-2 -0.005 -0.5" rotation="-90 0 0" scale="16 9 1"></a-entity>
+
+        <!--Back Wall-->
+        <a-entity class="back-wall" material="shader:flat;src:url(/assets/images/display_texture.png)"
+                  geometry="primitive: plane;" scale="12 3.5" position="0 1.75 4" rotation="0 180 0"></a-entity>
+
+        <!--Roof-->
+        <a-entity class="roof" material="shader:flat;color:#8f8f8f"
+                  geometry="primitive: plane;" scale="12 8" position="0 3.5 0" rotation="90 0 0"></a-entity>
+
+        <!--Left Wall-->
+        <a-entity class="left-wall" id="leftWall" material="shader:flat;src:url(/assets/images/display_texture.png)"
+                  geometry="primitive: plane;" scale="8 3.5" position="6 1.75 0" rotation="0 270 0"></a-entity>
+
+        <!--Right Small Wall-->
+        <a-entity class="right-wall" id="rightWall" material="shader:flat;src:url(/assets/images/display_texture.png)"
+                  geometry="primitive: box;" scale="0.01 1 7.9" position="-5.955 0.5 0.05"></a-entity>
+
+        <!--Left Front Post-->
+        <a-entity class="left-post" material="shader:flat;src:url(/assets/images/display_texture.png)"
+                  geometry="primitive: box;" scale="0.1 2.5 0.1" position="6 1.25 -3.95"></a-entity>
+
+        <!--Right Front Post-->
+        <a-entity class="right-post" material="shader:flat;src:url(/assets/images/display_texture.png)"
+                  geometry="primitive: box;" scale="0.1 2.5 0.1" position="-6 1.25 -3.95"></a-entity>
+
+        <!--Main Signage Backing-->
+        <a-entity class="sign-back" material="shader:flat;src:url(/assets/images/confectionary.png); repeat: 10 1;"
+                  geometry="primitive: box;" scale="12.1 2 0.2" position="0 3.5 -4"></a-entity>
+
+        <!--Main Signage Display-->
+        <a-entity class="signage-display" material="shader:flat;src:url(/assets/images/display_texture.png);transparent:true;"
+                  geometry="primitive: plane;" scale="12 1.98" position="0 3.5 -4.125" rotation="0 180 0"></a-entity>
+
+        <!--Back Wall Display 1-->
+        <a-entity class="back-display" material="shader:flat;src:url(/assets/images/amazon-halloween.jpg)"
+                  geometry="primitive: plane;" scale="4 2" position="0 1.75 3.975" rotation="0 180 0"></a-entity>
+
+        <!--Left Wall Display-->
+        <a-entity class="left-display" material="shader:flat;src:url(/assets/images/amazon-fashion.jpg)"
+                  geometry="primitive: plane;" scale="6 2.75" position="5.975 1.75 0" rotation="0 270 0"></a-entity>
+
+    </a-entity>
+</template>

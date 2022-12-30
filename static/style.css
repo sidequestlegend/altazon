@@ -1,0 +1,123 @@
+html{
+    box-sizing: border-box;
+}
+.featherlight-content{
+    overflow:hidden!important;
+}
+.back-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    padding-left: 230px;
+    padding-top: 64px;
+    background: #eceff1;
+    box-sizing: border-box;
+}
+.main-container{
+    height: 100%;
+    width: 100%;
+    overflow:hidden;
+}
+.more-padding{
+    padding: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+.search-container{
+    margin-top:100px;
+    width: 80%;
+    margin-left: 10%;
+
+}
+.search-button-container{
+    padding-top: 15px;
+    position:relative;
+    margin:auto;
+    width: 100%;
+    text-align:center;
+}
+#clearButton{
+    margin-right: 0.5em;
+}
+.menu-item{
+   /* background: rgba(0,0,0,0.8);
+    border-left: 3px solid black;
+    border-bottom: 3px solid black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color:white;
+    padding: 10px;*/
+}
+.side-nav{
+    width: 230px;
+    z-index: -1;
+}
+#slide-out{
+    top: 64px;
+}
+.side-nav li a{
+    margin: 0!important;
+    padding: 0 16px;
+}
+.product-container{
+    padding:1em;
+}
+.logo-image{
+    width: 350px;
+}
+
+#openReviews{
+    margin-top: 10px;
+}
+.padding{
+    padding: 3em;
+}
+.relative{
+    position: relative;
+}
+#done_info{
+    margin-top: 4em;
+    text-align: center;
+}
+.done-bottom{
+    margin-right: 0.5em;
+}
+#done_text{
+    text-align: center;
+}
+.variation-item{
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 5px 5px;
+    font-size: 0.9em;
+    height: auto;
+    line-height: 20px;
+    /*display:inline-block;*/
+    /*width: 120px;*/
+    /*height: 40px;*/
+    /*vertical-align:middle;*/
+}
+.scroller{
+    overflow:auto;
+    width: 100%;
+    height: 100%;
+}
+#add_to_basket{
+    padding-top: 1.5em;
+}
+.carousel{
+    height: 180px;
+}
+.strike-through{
+    text-decoration:line-through;
+}
+#variationsContainer{
+    border-top: 1px solid #cfcfcf;
+}
+.side-border{
+    border-left:  1px solid #cfcfcf;
+}

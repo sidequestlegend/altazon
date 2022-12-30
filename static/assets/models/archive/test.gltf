@@ -1,0 +1,231 @@
+{
+	"asset": {
+		"version": "1"
+	},
+	"buffers": {
+		"test": {
+			"byteLength": 487872,
+			"type": "arraybuffer",
+			"uri": "test.bin"
+		}
+	},
+	"accessors": {
+		"accessor_position_MM_Terrain_-192110": {
+			"bufferView": "vec3BufferView",
+			"byteOffset": 0,
+			"byteStride": 12,
+			"componentType": 5126,
+			"count": 11616,
+			"max": [ 1000, 149.275, 1000 ],
+			"min": [ 0, 0, 0 ],
+			"type": "VEC3"
+		 },
+		"accessor_normal_MM_Terrain_-192110": {
+			"bufferView": "vec3BufferView",
+			"byteOffset": 139392,
+			"byteStride": 12,
+			"componentType": 5126,
+			"count": 11616,
+			"max": [ 0.8893244, 1, 0.8828717 ],
+			"min": [ -0.8814253, 0.3988023, -0.8885875 ],
+			"type": "VEC3"
+		 },
+		"accessor_uv0_MM_Terrain_-192110": {
+			"bufferView": "vec2BufferView",
+			"byteOffset": 0,
+			"byteStride": 8,
+			"componentType": 5126,
+			"count": 11616,
+			"max": [ 1, 1 ],
+			"min": [ 0, 0 ],
+			"type": "VEC2"
+		 },
+		"accessor_uv1_MM_Terrain_-192110": {
+			"bufferView": "vec2BufferView",
+			"byteOffset": 92928,
+			"byteStride": 8,
+			"componentType": 5126,
+			"count": 11616,
+			"max": [ 1, 1 ],
+			"min": [ 0, 0 ],
+			"type": "VEC2"
+		 },
+		"accessor_indices_0_MM_Terrain_-192110": {
+			"bufferView": "ushortBufferView",
+			"byteOffset": 0,
+			"byteStride": 0,
+			"componentType": 5123,
+			"count": 11616,
+			"max": [ 11615 ],
+			"min": [ 0 ],
+			"type": "SCALAR"
+		 }
+	},
+	"bufferViews": {
+		"ushortBufferView": {
+			"buffer": "test",
+			"byteLength": 23232,
+			"byteOffset": 0,
+			"target": 34963
+		},
+		"vec2BufferView": {
+			"buffer": "test",
+			"byteLength": 185856,
+			"byteOffset": 23232,
+			"target": 34962
+		},
+		"vec3BufferView": {
+			"buffer": "test",
+			"byteLength": 278784,
+			"byteOffset": 209088,
+			"target": 34962
+		}
+	},
+	"meshes": {
+		"mesh_MM_Terrain_-192110": {
+			"name": "mesh_MM_Terrain_-192110",
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": "accessor_position_MM_Terrain_-192110",
+						"NORMAL": "accessor_normal_MM_Terrain_-192110",
+						"TEXCOORD_0": "accessor_uv0_MM_Terrain_-192110",
+						"TEXCOORD_1": "accessor_uv1_MM_Terrain_-192110"
+					},
+					"indices": "accessor_indices_0_MM_Terrain_-192110",
+					"material": "material_New_Terrain_T2M_-192066",
+					"mode": 4
+				}
+			]
+		}
+	},
+	"shaders": {
+		"vertex_Legacy_Shaders_Diffuse": {
+			"type": 35633,
+			"uri": "DefaultVS.glsl"
+		},
+		"fragment_Legacy_Shaders_Diffuse": {
+			"type": 35632,
+			"uri": "DefaultFS.glsl"
+		}
+	},
+	"programs": {
+		"program_Legacy_Shaders_Diffuse": {
+			"attributes": [
+				"a_position",
+				"a_normal",
+				"a_texcoord0",
+				"a_texcoord1"				
+			],
+			"vertexShader": "vertex_Legacy_Shaders_Diffuse",
+			"fragmentShader": "fragment_Legacy_Shaders_Diffuse"
+		}
+	},
+	"techniques": {
+		"technique_Legacy_Shaders_Diffuse": {
+			"program": "program_Legacy_Shaders_Diffuse",
+			"parameters": {
+				"position": {
+					"type": 35665,
+					"semantic": "POSITION"
+				},
+				"normal": {
+					"type": 35665,
+					"semantic": "NORMAL"
+				},
+				"texcoord0": {
+					"type": 35664,
+					"semantic": "TEXCOORD_0"
+				},
+				"texcoord1": {
+					"type": 35664,
+					"semantic": "TEXCOORD_1"
+				},
+				"modelViewMatrix": {
+					"type": 35676,
+					"semantic": "MODELVIEW"
+				},
+				"projectionMatrix": {
+					"type": 35676,
+					"semantic": "PROJECTION"
+				},
+				"normalMatrix": {
+					"type": 35675,
+					"semantic": "MODELVIEWINVERSETRANSPOSE"
+				},
+				"_Color": {
+					"type": 35666
+				},
+				"_MainTex": {
+					"type": 35678
+				}				
+			},
+			"attributes": {
+				"a_position": "position",
+				"a_normal": "normal",
+				"a_texcoord0": "texcoord0",
+				"a_texcoord1": "texcoord1"				
+			},
+			"uniforms": {
+				"u_modelViewMatrix": "modelViewMatrix",
+				"u_projectionMatrix": "projectionMatrix",
+				"u_normalMatrix": "normalMatrix",
+				"_Color": "_Color",
+				"_MainTex": "_MainTex"				
+			},
+			"states": {
+
+			}
+		}
+	},
+	"samplers": {
+		"sampler_1_0_m": {
+			"magFilter": 9729,
+			"minFilter": 9985,
+			"wrapS": 10497,
+			"wrapT": 10497
+		}
+	},
+	"textures": {
+		"texture_New_Terrain_Basemap_Diffuse_10232": {
+			"format": 6408,
+			"internalFormat": 6408,
+			"sampler": "sampler_1_0_m",
+			"source": "image_New_Terrain_Basemap_Diffuse_10232",
+			"target": 3553,
+			"type": 5121
+		}
+	},
+	"images": {
+		"image_New_Terrain_Basemap_Diffuse_10232": {
+			"uri": "New Terrain_Basemap_Diffuse.png"
+		}
+	},
+	"materials": {
+		"material_New_Terrain_T2M_-192066": {
+			"technique": "technique_Legacy_Shaders_Diffuse",
+			"values": {
+				"_Color": [1, 1, 1, 1],
+				"_MainTex": "texture_New_Terrain_Basemap_Diffuse_10232"				
+			},
+			"name": "material_New_Terrain_T2M_-192066"
+		}
+	},
+	"nodes": {
+		"node_MM_Terrain_-192242": {
+			"name": "node_MM_Terrain_-192242",
+			"meshes": [
+				"mesh_MM_Terrain_-192110"
+			],
+			"matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1]
+		}
+	},
+	"scene": "defaultScene",
+	"scenes": {
+		"defaultScene": {
+			"nodes": [
+				"node_MM_Terrain_-192242"
+			]
+		}
+	}
+}

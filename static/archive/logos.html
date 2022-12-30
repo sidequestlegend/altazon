@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Zilla+Slab+Highlight|Baloo+Tamma|Ruslan+Display|Mirza|Flamenco|Milonga|Faster+One|Tulpen+One|Henny+Penny|Medula+One|Trade+Winds|Finger+Paint|Alfa+Slab+One|Allan|Maiden+Orange|Mystery+Quest|Lemonada|Audiowide|Averia+Serif+Libre|Chicle|Baloo|Baloo+Bhaijaan|Baloo+Bhaina|Baloo+Paaji|Baloo+Tammudu|Bangers|Baumans|Bevan|Black+Ops+One|Boogaloo|Bowlby+One|Bowlby+One+SC|Bubblegum+Sans|Bungee|Bungee+Inline|Cabin+Sketch|Carter+One|Ceviche+One|Changa+One|Chelsea+Market|Cherry+Swash|Chewy|Cinzel+Decorative|Coda|Comfortaa|Concert+One|Contrail+One|Crushed|Emilys+Candy|Expletus+Sans|Fontdiner+Swanky|Forum|Freckle+Face|Fredericka+the+Great|Fredoka+One|Frijole|Fugaz+One|Germania+One|Graduate|Gravitas+One|Gruppo|Happy+Monkey|Iceland|Kelly+Slab|Knewave|Kranky|Lalezar|Lemon|Life+Savers|Lilita+One|Lily+Script+One|Limelight|Lobster|Lobster+Two|Londrina+Outline|Londrina+Solid|Love+Ya+Like+A+Sister|Luckiest+Guy|Macondo|Megrim|Mogra|Mountains+of+Christmas|Nixie+One|Nova+Slim|Nova+Square|Oleo+Script|Oleo+Script+Swash+Caps|Oregano|Overlock|Passion+One|Patua+One|Playball|Poiret+One|Poller+One|Pompiere|Prosto+One|Racing+Sans+One|Rammetto+One|Ranchers|Righteous|Rye|Salsa|Sancreek|Seaweed+Script|Share|Shojumaru|Shrikhand|Sigmar+One|Sniglet|Special+Elite|Spirax|Squada+One|Stardos+Stencil|Unica+One|Unkempt|Vampiro+One|Vast+Shadow|Voces|Yatra+One|Yeseva+One" rel="stylesheet">
+</head>
+<body style="background: #000">
+<div style="display:none;">
+    <canvas id="canvas" width="80" height="80"></canvas>
+    <canvas id="identicon" width="80" height="80" data-jdenticon-value=""></canvas>
+</div>
+<canvas id="main-logo" width="320" height="80"></canvas>
+
+<script type="text/javascript">
+//    font-family: 'Overlock', cursive;
+//    font-family: 'Playball', cursive;
+//    font-family: 'Bungee', cursive;
+//    font-family: 'Lobster', cursive;
+//    font-family: 'Abril Fatface', cursive;
+//    font-family: 'Comfortaa', cursive;
+//    font-family: 'Spirax', cursive;
+//    font-family: 'Poiret One', cursive;
+//    font-family: 'Passion One', cursive;
+//    font-family: 'Patua One', cursive;
+//    font-family: 'Shrikhand', cursive;
+//    font-family: 'Lobster Two', cursive;
+//    font-family: 'Righteous', cursive;
+//    font-family: 'Boogaloo', cursive;
+//    font-family: 'Ranchers', cursive;
+//    font-family: 'Alfa Slab One', cursive;
+//    font-family: 'Concert One', cursive;
+//    font-family: 'Fredoka One', cursive;
+//    font-family: 'Audiowide', cursive;
+//    font-family: 'Bangers', cursive;
+//    font-family: 'Londrina Outline', cursive;
+//    font-family: 'Bevan', cursive;
+//    font-family: 'Cabin Sketch', cursive;
+//    font-family: 'Prosto One', cursive;
+//    font-family: 'Unica One', cursive;
+//    font-family: 'Fugaz One', cursive;
+//    font-family: 'Forum', cursive;
+//    font-family: 'Chewy', cursive;
+//    font-family: 'Special Elite', cursive;
+//    font-family: 'Luckiest Guy', cursive;
+//    font-family: 'Contrail One', cursive;
+//    font-family: 'Limelight', cursive;
+//    font-family: 'Sigmar One', cursive;
+//    font-family: 'Oleo Script', cursive;
+//    font-family: 'Share', cursive;
+//    font-family: 'Coda', cursive;
+//    font-family: 'Lalezar', cursive;
+//    font-family: 'Ceviche One', cursive;
+//    font-family: 'Freckle Face', cursive;
+//    font-family: 'Emilys Candy', cursive;
+//    font-family: 'Bubblegum Sans', cursive;
+//    font-family: 'Carter One', cursive;
+//    font-family: 'Love Ya Like A Sister', cursive;
+//    font-family: 'Changa One', cursive;
+//    font-family: 'Squada One', cursive;
+//    font-family: 'Black Ops One', cursive;
+//    font-family: 'Bowlby One SC', cursive;
+//    font-family: 'Cinzel Decorative', cursive;
+//    font-family: 'Fredericka the Great', cursive;
+//    font-family: 'Nixie One', cursive;
+//    font-family: 'Chelsea Market', cursive;
+//    font-family: 'Baloo', cursive;
+//    font-family: 'Racing Sans One', cursive;
+//    font-family: 'Kelly Slab', cursive;
+//    font-family: 'Graduate', cursive;
+//    font-family: 'Lilita One', cursive;
+//    font-family: 'Yeseva One', cursive;
+//    font-family: 'Happy Monkey', cursive;
+//    font-family: 'Pompiere', cursive;
+//    font-family: 'Londrina Solid', cursive;
+//    font-family: 'Bungee Inline', cursive;
+//    font-family: 'Vast Shadow', cursive;
+//    font-family: 'Rammetto One', cursive;
+//    font-family: 'Gravitas One', cursive;
+//    font-family: 'Macondo', cursive;
+//    font-family: 'Baloo Tammudu', cursive;
+//    font-family: 'Poller One', cursive;
+//    font-family: 'Baumans', cursive;
+//    font-family: 'Allan', cursive;
+//    font-family: 'Baloo Paaji', cursive;
+//    font-family: 'Oregano', cursive;
+//    font-family: 'Fontdiner Swanky', cursive;
+//    font-family: 'Mountains of Christmas', cursive;
+//    font-family: 'Knewave', cursive;
+//    font-family: 'Gruppo', cursive;
+//    font-family: 'Lily Script One', cursive;
+//    font-family: 'Bowlby One', cursive;
+//    font-family: 'Seaweed Script', cursive;
+//    font-family: 'Mogra', cursive;
+//    font-family: 'Kranky', cursive;
+//    font-family: 'Baloo Bhaijaan', cursive;
+//    font-family: 'Frijole', cursive;
+//    font-family: 'Baloo Bhaina', cursive;
+//    font-family: 'Crushed', cursive;
+//    font-family: 'Oleo Script Swash Caps', cursive;
+//    font-family: 'Unkempt', cursive;
+//    font-family: 'Cherry Swash', cursive;
+//    font-family: 'Lemon', cursive;
+//    font-family: 'Megrim', cursive;
+//    font-family: 'Expletus Sans', cursive;
+//    font-family: 'Iceland', cursive;
+//    font-family: 'Stardos Stencil', cursive;
+//    font-family: 'Sniglet', cursive;
+//    font-family: 'Averia Serif Libre', cursive;
+//    font-family: 'Voces', cursive;
+//    font-family: 'Germania One', cursive;
+//    font-family: 'Life Savers', cursive;
+//    font-family: 'Rye', cursive;
+//    font-family: 'Nova Square', cursive;
+//    font-family: 'Yatra One', cursive;
+//    font-family: 'Salsa', cursive;
+//    font-family: 'Sancreek', cursive;
+//    font-family: 'Nova Slim', cursive;
+//    font-family: 'Vampiro One', cursive;
+//    font-family: 'Shojumaru', cursive;
+
+    var logos = [
+        {identicon:'10',icon:'710',iconColor:'#263238',/*iconFont:'60px Material Icons',*/name:'Women\'s Fashion',font:'30px \'Poiret One\'',/*image:function(ctx){
+            return drawImage('/assets/images/logo-square-back.png',128,6,ctx);
+        }*/gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'1',icon:'697',iconColor:'#0452df',/*iconFont:'60px Material Icons',*/name:'Men\'s Fashion',font:'30px \'Boogaloo\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'kids',icon:'705',iconColor:'#9452df',fontColor:'#9452df',/*iconFont:'60px Material Icons',*/name:'Girl\'s Fashion',font:'40px \'Lobster\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'kids',icon:'703',iconColor:'#3339ff',fontColor:'#3949ab',/*iconFont:'60px Material Icons',*/name:'Boy\'s Fashion',font:'40px \'Bangers\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'baby',icon:'740',iconColor:'#fce4ec',fontColor:'#f8bbd0',/*iconFont:'60px Material Icons',*/name:'Baby',font:'40px \'Comfortaa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},//7147444011	Clothing, Shoes & Jewelry/Baby
+        {identicon:'jewelery',icon:'716',iconColor:'#04520f',/*iconFont:'60px Material Icons',*/name:'Jewelery',font:'40px \'Playball\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'shoes',icon:'716',iconColor:'#04520f',/*iconFont:'60px Material Icons',*/name:'Jewelery',font:'40px \'Playball\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'shoes-ajg',icon:'712',iconColor:'#003099',/*iconFont:'60px Material Icons',*/name:'Shoes',font:'50px \'Monoton\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'hand-bags',icon:'719',iconColor:'#ab47bc',/*iconFont:'60px Material Icons',*/name:'Handbags',font:'50px \'Arima Madurai\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'accessories-ahdgahdg',icon:'723',iconColor:'#9e9d24',fontColor:'#33691e',/*iconFont:'60px Material Icons',*/name:'Accessories',font:'45px \'Lobster Two\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'novelty-ahdgahdg',icon:'82',iconColor:'#9e9d24',fontColor:'#827717',/*iconFont:'60px Material Icons',*/name:'Costumes & Novelty',font:'30px \'Mountains of Christmas\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},//8
+        {identicon:'luggage',icon:'538',iconColor:'#009688',fontColor:'#009688',/*iconFont:'60px Material Icons',*/name:'Luggage & Travel',font:'40px \'Pompiere\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'plussize',icon:'715',iconColor:'#81c784',fontColor:'#1b5e20',/*iconFont:'60px Material Icons',*/name:'Plus Size',font:'50px \'Macondo\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'Fragrance',icon:'722',iconColor:'#f48fb1',fontColor:'#f48fb1',/*iconFont:'60px Material Icons',*/name:'Fragrance',font:'60px \'Allan\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'haircare',icon:'726',iconColor:'#f48fb1',fontColor:'#ce93d8',/*iconFont:'60px Material Icons',*/name:'Hair Care',font:'60px \'Oregano\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},//12
+        {identicon:'weddingajgdajgfd',icon:'618',iconColor:'#8bc34a',fontColor:'#8bc34a',/*iconFont:'60px Material Icons',*/name:'Wedding',font:'50px \'Lily Script One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.1,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'sports',icon:'66',iconColor:'#4527a0',fontColor:'#4527a0',/*iconFont:'60px Material Icons',*/name:'Sports & Active',font:'35px \'Londrina Solid\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.10,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'watch',icon:'717',iconColor:'#f8bbd0',fontColor:'#f48fb1',/*iconFont:'60px Material Icons',*/name:'Watches',font:'45px \'Cinzel Decorative\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.10,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'safety',icon:'99',iconColor:'#64ffda',fontColor:'#81c784',/*iconFont:'60px Material Icons',*/name:'Uniform & Work',font:'22px \'Bowlby One SC\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.10,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'maternity-ahfdahd',icon:'739',iconColor:'#ea80fc',fontColor:'#ea80fc',/*iconFont:'60px Material Icons',*/name:'Maternity',font:'40px \'Carter One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.15,"transparent");
+            gradient.addColorStop(0.20,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'nail-art',icon:'1001',iconColor:'#ea80fc',fontColor:'#ea60fc',/*iconFont:'60px Material Icons',*/name:'Nail Art & Care',font:'33px \'Seaweed Script\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.15,"transparent");
+            gradient.addColorStop(0.20,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'makeup',icon:'1002',iconColor:'#f8bbd0',fontColor:'#f8bbd0',/*iconFont:'60px Material Icons',*/name:'Makeup',font:'60px \'Megrim\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.15,"transparent");
+            gradient.addColorStop(0.20,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'jeans',icon:'697',iconColor:'#1976d2',fontColor:'#82b1ff',/*iconFont:'60px Material Icons',*/name:'Jeans',font:'65px \'Crushed\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'hats',icon:'713',iconColor:'#b39ddb',fontColor:'#b39ddb',/*iconFont:'60px Material Icons',*/name:'Hats',font:'65px \'Oleo Script Swash Caps\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'scarves',icon:'1003',iconColor:'#00bcd4',fontColor:'#00bcd4',/*iconFont:'60px Material Icons',*/name:'Scarves',font:'50px \'Salsa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'tshirts',icon:'705',iconColor:'#fbc02d',fontColor:'#fbc02d',/*iconFont:'60px Material Icons',*/name:'T-Shirts',font:'40px \'Lemonada\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'purple',icon:'747',iconColor:'#4a148c',fontColor:'#4a148c',/*iconFont:'60px Material Icons',*/name:'Outdoor Décor',font:'32px \'Spirax\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'tshirts',icon:'1004',iconColor:'#8bc34a',fontColor:'#8bc34a',/*iconFont:'60px Material Icons',*/name:'Gardening',font:'45px \'Mystery Quest\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'outdoor',icon:'687',iconColor:'#e57373',fontColor:'#e57373',/*iconFont:'60px Material Icons',*/name:'Outdoor Cooking',font:'40px \'Maiden Orange\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'POOL',icon:'809',iconColor:'#4d4dbd',fontColor:'#4d4dbd',/*iconFont:'60px Material Icons',*/name:'Pools & Hot Tubs',font:'35px \'Passion One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'snow',icon:'784',iconColor:'#bdbdbd',fontColor:'#bdbdbd',/*iconFont:'60px Material Icons',*/name:'Snow Removal',font:'35px \'Passion One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'bathroom',icon:'1006',iconColor:'#b2ebf2',fontColor:'#80deea',/*iconFont:'60px Material Icons',*/name:'Bathroom',font:'50px \'Lobster\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'hardware',icon:'1007',iconColor:'#d84315',fontColor:'#bf360c',/*iconFont:'60px Material Icons',*/name:'Hardware',font:'40px \'Comfortaa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'cooling',icon:'1008',iconColor:'#d84315',fontColor:'#bf360c',/*iconFont:'60px Material Icons',*/name:'Heating',font:'65px \'Medula One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'lawn',icon:'1009',iconColor:'#8bc34a',fontColor:'#689f38',/*iconFont:'60px Material Icons',*/name:'Lawn & Garden',font:'30px \'Fredericka the Great\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'PAINTING',icon:'1010',iconColor:'#8bc34a',fontColor:'#689f38',/*iconFont:'60px Material Icons',*/name:'Painting Supplies',font:'32px \'Contrail One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.10,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'home-security',icon:'502',iconColor:'#8c9eff',fontColor:'#8c9eff',/*iconFont:'60px Material Icons',*/name:'Home Security',font:'27px \'Audiowide\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"transparent");
+            gradient.addColorStop(0.10,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'power-tools',icon:'1012',iconColor:'#3949ab',fontColor:'#3949ab',/*iconFont:'60px Material Icons',*/name:'Power Tools',font:'25px \'Bungee\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.35,"transparent");
+            gradient.addColorStop(0.40,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'hand-tools',icon:'1011',iconColor:'#e65100',fontColor:'#e65100',/*iconFont:'60px Material Icons',*/name:'Hand Tools',font:'37px \'Comfortaa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'pets',icon:'1013',iconColor:'#e65100',fontColor:'#e65100',/*iconFont:'60px Material Icons',*/name:'Pets',font:'37px \'Comfortaa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'music-#f50057',icon:'74',iconColor:'#f50057',fontColor:'#f50057',/*iconFont:'60px Material Icons',*/name:'Music Imporium',font:'28px \'Zilla Slab Highlight\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'furnature',icon:'1014',iconColor:'#42a5f5',fontColor:'#42a5f5',/*iconFont:'60px Material Icons',*/name:'Furniture',font:'28px \'Vast Shadow\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'books',icon:'689',iconColor:'#42a5f5',fontColor:'#303f9f',/*iconFont:'60px Material Icons',*/name:'Bookstore',font:'50px \'Lilita One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'watches',icon:'717',iconColor:'#42a5f5',fontColor:'#00897b',/*iconFont:'60px Material Icons',*/name:'Watches',font:'50px \'Londrina Solid\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'amazon-devices',icon:'amazon',iconColor:'#fff',fontColor:'#212121',/*iconFont:'60px Material Icons',*/name:'Amazon Devices',font:'32px \'Londrina Solid\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'virtual-reality',icon:'1015',iconColor:'#ff5722',fontColor:'#ff5722',/*iconFont:'60px Material Icons',*/name:'Virtual Reality',font:'32px \'Baumans\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'cell-phones',icon:'1016',iconColor:'#00acc1',fontColor:'#00acc1',/*iconFont:'60px Material Icons',*/name:'Cell Phones',font:'40px \'Patua One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'camera',icon:'1017',iconColor:'#00695c',fontColor:'#00695c',/*iconFont:'60px Material Icons',*/name:'Camera & Accessories',font:'28px \'Lobster Two\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'computer-cables',icon:'96',iconColor:'#00695c',fontColor:'#00695c',/*iconFont:'60px Material Icons',*/name:'Computer Cables',font:'27px \'Righteous\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'car-electrics',icon:'625',iconColor:'#29b6f6',fontColor:'#29b6f6',/*iconFont:'60px Material Icons',*/name:'Car Electrics',font:'27px \'Poller One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'computers',icon:'878',iconColor:'#ef5350',fontColor:'#ef5350',/*iconFont:'60px Material Icons',*/name:'Computers & Co',font:'30px \'Gruppo\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'headphones',icon:'1018',iconColor:'#ce93d8',fontColor:'#ce93d8 ',/*iconFont:'60px Material Icons',*/name:'Headphones',font:'35px \'Righteous\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'computer-cables',icon:'85',iconColor:'#7986cb',fontColor:'#7986cb',/*iconFont:'60px Material Icons',*/name:'Home Audio',font:'37px \'Baloo Paaji\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'tv-video',icon:'1019',iconColor:'#cddc39',fontColor:'#afb42b',/*iconFont:'60px Material Icons',*/name:'TV & Video',font:'35px \'Bowlby One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'computer-cables',icon:'1020',iconColor:'#7986cb',fontColor:'#7986cb',/*iconFont:'60px Material Icons',*/name:'Wearable Tech',font:'30px \'Megrim\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'computer-cables',icon:'531',iconColor:'#0288d1',fontColor:'#0288d1',/*iconFont:'60px Material Icons',*/name:'Security Systems',font:'35px \'Crushed\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'office-equip',icon:'1022',iconColor:'#00897b',fontColor:'#00897b',/*iconFont:'60px Material Icons',*/name:'Office Equipment',font:'30px \'Crushed\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'portable-audio',icon:'1021',iconColor:'#00acc1',fontColor:'#e65100',/*iconFont:'60px Material Icons',*/name:'Portable Audio',font:'30px \'Cherry Swash\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.3,"transparent");
+            gradient.addColorStop(0.35,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'sports-fitness',icon:'50',iconColor:'#00acc1',fontColor:'#e65100',/*iconFont:'60px Material Icons',*/name:'Sports & Fitness',font:'30px \'Unkempt\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'out-door',icon:'37',iconColor:'#00acc1',fontColor:'#388e3c',/*iconFont:'60px Material Icons',*/name:'Outdoor Recreation',font:'25px \'Expletus Sans\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'fan-shop',icon:'52',iconColor:'#00acc1',fontColor:'#e65100',/*iconFont:'60px Material Icons',*/name:'Fan Shop',font:'30px \'Cherry Swash\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'arts-crafts',icon:'1023',iconColor:'#00acc1',fontColor:'#3f51b5',/*iconFont:'60px Material Icons',*/name:'Arts & Crafts',font:'30px \'Oleo Script Swash Caps\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+
+
+        {identicon:'hobbies',icon:'86',iconColor:'#00acc1',fontColor:'#7e57c2',/*iconFont:'60px Material Icons',*/name:'Hobbies',font:'45px \'Sniglet\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+
+        {identicon:'learning-education',icon:'98',iconColor:'#827717',fontColor:'#827717',/*iconFont:'60px Material Icons',*/name:'Learning & Education',font:'22px \'Life Savers\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'bakery',icon:'650',iconColor:'#f06292',fontColor:'#f06292',/*iconFont:'60px Material Icons',*/name:'Bakery',font:'50px \'Life Savers\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'produce',icon:'657',iconColor:'#3f51b5',fontColor:'#4caf50',/*iconFont:'60px Material Icons',*/name:'Produce',font:'50px \'Concert One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'meat',icon:'686',iconColor:'#3f51b5',fontColor:'#3f51b5',/*iconFont:'60px Material Icons',*/name:'Meat & Sea Food',font:'30px \'Concert One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'dairy',icon:'675',iconColor:'#ff9800',fontColor:'#26a69a',/*iconFont:'60px Material Icons',*/name:'Cheese & Dairy',font:'30px \'Coda\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'herbs',icon:'789',iconColor:'#ff9800',fontColor:'#795548',/*iconFont:'60px Material Icons',*/name:'Herbs & Spices',font:'37px \'Bubblegum Sans\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'pasta',icon:'1024',iconColor:'#ff9800',fontColor:'#827717',/*iconFont:'60px Material Icons',*/name:'Pasta & Noodles',font:'33px \'Oleo Script Swash Caps\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'pasta',icon:'653',iconColor:'#673ab7',fontColor:'#673ab7',/*iconFont:'60px Material Icons',*/name:'Home Brewing',font:'40px \'Mountains of Christmas\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'pasta',icon:'680',iconColor:'#ff9800',fontColor:'#827717',/*iconFont:'60px Material Icons',*/name:'Coffee & Tea',font:'33px \'Seaweed Script\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'cooking',icon:'690',iconColor:'#ff8f00',fontColor:'#ff6f00',/*iconFont:'60px Material Icons',*/name:'Cooking & Baking',font:'27px \'Kranky\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+
+
+        {identicon:'breakfast',icon:'667',iconColor:'#f06292',fontColor:'#ec407a',/*iconFont:'60px Material Icons',*/name:'Sweet Shop',font:'37px \'Cherry Swash\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'breakfast',icon:'1025',iconColor:'#8e24aa',fontColor:'#4a148c',/*iconFont:'60px Material Icons',*/name:'Jams & Jellys',font:'35px \'Sniglet\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'dolls',icon:'1026',iconColor:'#8e24aa',fontColor:'#4a148c',/*iconFont:'60px Material Icons',*/name:'Dolls & Co',font:'55px \'Medula One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'action-figures',icon:'31',iconColor:'#004d40',fontColor:'#004d40',/*iconFont:'60px Material Icons',*/name:'Action Figures',font:'30px \'Concert One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'board-games',icon:'42',iconColor:'#00bcd4',fontColor:'#00bcd4',/*iconFont:'60px Material Icons',*/name:'Board Games',font:'35px \'Salsa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'card-games',icon:'86',iconColor:'#b388ff',fontColor:'#b388ff',/*iconFont:'60px Material Icons',*/name:'Card Games',font:'40px \'Voces\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'game-room',icon:'62',iconColor:'#009688',fontColor:'#009688',/*iconFont:'60px Material Icons',*/name:'Man Cave',font:'55px \'Iceland\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'trading-cards',icon:'69',iconColor:'#b388ff',fontColor:'#b388ff',/*iconFont:'60px Material Icons',*/name:'Trading Cards',font:'40px \'Germania One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'party',icon:'527',iconColor:'#b388ff',fontColor:'#00bcd4',/*iconFont:'60px Material Icons',*/name:'Party Supplies',font:'28px \'Finger Paint\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'party',icon:'70',iconColor:'#e53935',fontColor:'#7b1fa2',/*iconFont:'60px Material Icons',*/name:'Novelty & Gag',font:'28px \'Trade Winds\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'1854185418',icon:'72',iconColor:'#26c6da',fontColor:'#00acc1',/*iconFont:'60px Material Icons',*/name:'Vibrations Music',font:'60px \'Tulpen One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.2,"transparent");
+            gradient.addColorStop(0.25,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'bluray',icon:'1027',iconColor:'#2962ff',fontColor:'#0277bd',/*iconFont:'60px Material Icons',*/name:'Blu-Ray',font:'70px \'Medula One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'akhgkafghkaf',icon:'none',iconColor:'#2962ff',fontColor:'#0277bd',/*iconFont:'60px Material Icons',*/name:'Video Games',font:'40px \'Faster One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'akhgkafghkaf',icon:'97',iconColor:'#2962ff',fontColor:'#0277bd',/*iconFont:'60px Material Icons',*/name:'Collectibles',font:'40px \'Baloo Tamma\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'akhgkafghkaf',icon:'625',iconColor:'#2962ff',fontColor:'#0277bd',/*iconFont:'60px Material Icons',*/name:'Automotive',font:'40px \'Flamenco\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'akhgkafghkaf',icon:'625',iconColor:'#2962ff',fontColor:'#0277bd',/*iconFont:'60px Material Icons',*/name:'Prime Pantry',font:'40px \'Flamenco\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'akhgkafghkaf',icon:'113',iconColor:'#673ab7',fontColor:'#673ab7',/*iconFont:'60px Material Icons',*/name:'Appliances',font:'35px \'Ruslan Display\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'akhgkafghkaf',icon:'1023',iconColor:'#673ab7',fontColor:'#673ab7',/*iconFont:'60px Material Icons',*/name:'Arts & Crafts',font:'35px \'Mogra\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'wyirqyotyqytrqyrt',icon:'1028',iconColor:'#673ab7',fontColor:'#ff5252',/*iconFont:'60px Material Icons',*/name:'Handmade',font:'35px \'Bowlby One SC\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'wyirqyotyqytrqyrt',icon:'69',iconColor:'#673ab7',fontColor:'#2196f3',/*iconFont:'60px Material Icons',*/name:'Gift Cards',font:'35px \'Carter One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'wyirqyotyqytrqyrt',icon:'1029',iconColor:'#673ab7',fontColor:'#004d40',/*iconFont:'60px Material Icons',*/name:'Software',font:'45px \'Squada One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'wyirqyotyqytrqyrt',icon:'1016',iconColor:'#673ab7',fontColor:'#ff7043',/*iconFont:'60px Material Icons',*/name:'Mobile Apps',font:'45px \'Squada One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'wyirqyotyqytrqyrt',icon:'558',iconColor:'#673ab7',fontColor:'#ff7043',/*iconFont:'60px Material Icons',*/name:'Office Supplies',font:'27px \'Chelsea Market\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'magazines',icon:'1030',iconColor:'#673ab7',fontColor:'#ff7043',/*iconFont:'60px Material Icons',*/name:'Magazines',font:'35px \'Chelsea Market\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},//
+
+        {identicon:'surf-shop',icon:'1032',iconColor:'#0097a7',fontColor:'#03a9f4',/*iconFont:'60px Material Icons',*/name:'Sax-Wex Surf',font:'30px \'Righteous\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'fishing',icon:'1033',iconColor:'#8d6e63',fontColor:'#8bc34a',/*iconFont:'60px Material Icons',*/name:'Tackle Box Fishing',font:'33px \'Boogaloo\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'sailing',icon:'524',iconColor:'#8d6e63',fontColor:'#00695c',/*iconFont:'60px Material Icons',*/name:'Sailing Club',font:'38px \'Oleo Script\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.05,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'snorkler',icon:'1034',iconColor:'#00e5ff',fontColor:'#8bc34a',/*iconFont:'60px Material Icons',*/name:'Snorkler\'s Corner',font:'35px \'Lobster Two\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+
+
+        {identicon:'snorkler',icon:'1036',iconColor:'#8bc34a',fontColor:'#1de9b6',/*iconFont:'60px Material Icons',*/name:'Jet Ski',font:'45px \'Cinzel Decorative\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'snorkler',icon:'1035',iconColor:'#9e9d24',fontColor:'#ff9800',/*iconFont:'60px Material Icons',*/name:'Beach Ball\'s Corner',font:'28px \'Squada One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'home-improv',icon:'38',iconColor:'#69f0ae',fontColor:'#00c853',/*iconFont:'60px Material Icons',*/name:'Home Improvement',font:'25px \'Fredericka the Great\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'hardware',icon:'39',iconColor:'#9e9d24',fontColor:'#3e2723',/*iconFont:'60px Material Icons',*/name:'Hardware',font:'48px \'Pompiere\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'kitchen',icon:'1037',iconColor:'#FFF',fontColor:'#ffab00',/*iconFont:'60px Material Icons',*/name:'Kitchen & Bathroom',font:'22px \'Happy Monkey\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'kitchen',icon:'114',iconColor:'#9e9d24',fontColor:'#1b5e20',/*iconFont:'60px Material Icons',*/name:'Smart Home',font:'35px \'Lilita One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'Home-Improvement-Service',icon:'617',iconColor:'#00b0ff',fontColor:'#1b5e20',/*iconFont:'60px Material Icons',*/name:'Home Improvement Service',font:'26px \'Pompiere\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'Home-Improvement-Service',icon:'1038',iconColor:'#ad1457',fontColor:'#42a5f5',/*iconFont:'60px Material Icons',*/name:'Cleaning Service',font:'26px \'Racing Sans One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'electrical-Improvement-Service',icon:'1040',iconColor:'#42a5f5',fontColor:'#ad1457',/*iconFont:'60px Material Icons',*/name:'Electrical Service',font:'26px \'Carter One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'plumbing-Improvement-Service',icon:'1039',iconColor:'#283593',fontColor:'#2196f3',/*iconFont:'60px Material Icons',*/name:'Plumbing Service',font:'33px \'Bubblegum Sans\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+        {identicon:'yard',icon:'1041',iconColor:'#afb42b',fontColor:'#9e9d24',/*iconFont:'60px Material Icons',*/name:'Yard Service',font:'33px \'Comfortaa\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+        {identicon:'automafhagfhag',icon:'627',iconColor:'#ef5350',fontColor:'#c62828',/*iconFont:'60px Material Icons',*/name:'Automotive Service',font:'25px \'Poiret One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+        {identicon:'automafhagfhag',icon:'616',iconColor:'#8e24aa',fontColor:'#6a1b9a',/*iconFont:'60px Material Icons',*/name:'Home Service',font:'35px \'Patua One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+
+
+
+        {identicon:'automafhagfhag',icon:'1042',iconColor:'#4db6ac',fontColor:'#00b8d4',/*iconFont:'60px Material Icons',*/name:'Home Theater Service',font:'25px \'Unica One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+
+//
+        {identicon:'lessons-Service',icon:'1043',iconColor:'#283593',fontColor:'#2196f3',/*iconFont:'60px Material Icons',*/name:'Lessons & Classes',font:'33px \'Bubblegum Sans\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+//
+        {identicon:'computer-Service',icon:'1019',iconColor:'#283593',fontColor:'#2196f3',/*iconFont:'60px Material Icons',*/name:'Computer Services',font:'25px \'Coda\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+        {identicon:'computer-Service',icon:'1019',iconColor:'#283593',fontColor:'#2196f3',/*iconFont:'60px Material Icons',*/name:'Garden Safety',font:'25px \'Prosto One\'',gradient:function(ctx){
+            var gradient = ctx.createRadialGradient(40,40,40,40,40,0);
+            gradient.addColorStop(0,"transparent");
+            gradient.addColorStop(0.1,"transparent");
+            gradient.addColorStop(0.15,"white");
+            gradient.addColorStop(1,"white");
+            return gradient;
+        }},
+    ];
+
+    var current = logos.length-1;
+    console.log(logos.length);
+    setTimeout(function(){
+
+
+        var identicon_canvas=document.getElementById("identicon");
+
+        var logo_canvas=document.getElementById("main-logo");
+        var logo_ctx=logo_canvas.getContext("2d");
+
+        logo_ctx.fillStyle = "#fff";
+
+        logo_ctx.fillRect(0,0,320,80);
+        if(logos[current].identicon)logo_ctx.drawImage(identicon_canvas, 0, 0);
+        if(logos[current].gradient){
+            var gradient = logos[current].gradient(ctx);
+            logo_ctx.fillStyle = gradient;
+            logo_ctx.fillRect(0,0,80,80);
+            logo_ctx.drawImage(canvas, 0, 0);
+        }else if(logos[current].image){
+            logos[current].image(logo_ctx)
+                .then(function(){
+                    logo_ctx.drawImage(canvas, 0, 0);
+                });
+        }
+        logo_ctx.font=logos[current].font;
+        logo_ctx.fillStyle = logos[current].fontColor||'#263238';
+        logo_ctx.textAlign="center";
+        logo_ctx.fillText(logos[current].name,190,50);
+    },500);
+
+
+    var drawImage = function(url,size,padding,ctx,color){
+        return new Promise(function(resolve){
+            var img = new Image(size,size);
+            img.src = url;
+            img.onload = function(){
+
+                var buffer = document.createElement('canvas');
+                buffer.width = 128;
+                buffer.height = 128;
+                var bx = buffer.getContext('2d');
+
+                // fill offscreen buffer with the tint color
+                bx.fillStyle = color;
+                bx.fillRect(0,0,buffer.width,buffer.height);
+
+                // destination atop makes a result with an alpha channel identical to fg, but with all pixels retaining their original color *as far as I can tell*
+                bx.globalCompositeOperation = "destination-atop";
+                bx.drawImage(img,0,0,size,size,padding,padding,80-padding*2,80-padding*2);
+
+
+                // to tint the image, draw it first
+                ctx.drawImage(img,0,0,size,size,padding,padding,80-padding*2,80-padding*2);
+
+                //then set the global alpha to the amound that you want to tint it, and draw the buffer directly on top of it.
+                ctx.globalAlpha = 0.5;
+                ctx.drawImage(buffer,0,0);
+                ctx.globalAlpha = 1;
+                resolve();
+            }
+        });
+    }
+
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext("2d");
+    if(logos[current].iconFont){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.font=logos[current].iconFont;
+        ctx.fillStyle = logos[current].iconColor;
+        ctx.fillText(logos[current].icon,10,70);
+    }else{
+        drawImage('/assets/images/ultimate_free_icon_set_128px/'+logos[current].icon+'.png',128,10,ctx,logos[current].iconColor);
+    }
+    if(logos[current].identicon)document.getElementById('identicon').dataset.jdenticonValue = logos[current].identicon;
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jdenticon@1.7.2"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Altazon</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.3.0/aframe.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <!--<script src="http://localhost:8081/easyrtc/easyrtc.js"></script>-->
+    <!--<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>-->
+    <script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+    <script src="https://cdn.rawgit.com/NGenesis/altspacevr-behaviors/v0.8.1/js/altspaceutil.min.js"></script>
+    <!--<script src="https://rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/aframe-particle-system-component.min.js"></script>-->
+    <!--<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.js"></script>-->
+    <!--<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>-->
+</head>
+<body>
+    <!--<a-scene altspace='' >--><!--networked-scene="room: basic-audio;debug: true;adapter: easyrtc;audio: true;serverURL: http://localhost:8081/"-->
+        <!--<a-assets>-->
+            <!--<script id="avatar-template" type="text/html">-->
+                <!--<a-entity class="avatar">-->
+                    <!--<a-sphere class="head"-->
+                              <!--color="#5985ff"-->
+                              <!--scale="0.45 0.5 0.4"-->
+                    <!--&gt;</a-sphere>-->
+                    <!--<a-entity class="face"-->
+                              <!--position="0 0.05 0"-->
+                    <!--&gt;-->
+                        <!--<a-sphere class="eye"-->
+                                  <!--color="#efefef"-->
+                                  <!--position="0.16 0.1 -0.35"-->
+                                  <!--scale="0.12 0.12 0.12"-->
+                        <!--&gt;-->
+                            <!--<a-sphere class="pupil"-->
+                                      <!--color="#000"-->
+                                      <!--position="0 0 -1"-->
+                                      <!--scale="0.2 0.2 0.2"-->
+                            <!--&gt;</a-sphere>-->
+                        <!--</a-sphere>-->
+                        <!--<a-sphere class="eye"-->
+                                  <!--color="#efefef"-->
+                                  <!--position="-0.16 0.1 -0.35"-->
+                                  <!--scale="0.12 0.12 0.12"-->
+                        <!--&gt;-->
+                            <!--<a-sphere class="pupil"-->
+                                      <!--color="#000"-->
+                                      <!--position="0 0 -1"-->
+                                      <!--scale="0.2 0.2 0.2"-->
+                            <!--&gt;</a-sphere>-->
+                        <!--</a-sphere>-->
+                    <!--</a-entity>-->
+                <!--</a-entity>-->
+            <!--</script>-->
+        <!--</a-assets>-->
+        <!--<a-entity id="player" networked="template:#avatar-template;showLocalTemplate:false;" position="0 2 0" camera look-controls wasd-controls>-->
+
+            <!--&lt;!&ndash;<a-entity id="head" ></a-entity>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash; hand controls &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<a-entity hand-controls="left" id="left-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a-entity hand-controls="right" id="right-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>&ndash;&gt;-->
+        <!--</a-entity>-->
+    <!--</a-scene>-->
+    <script type="text/javascript" src="/shared.js"></script>
+    <script type="text/javascript" src="/js/HackyGLTFLoader.js"></script>
+    <script type="text/javascript" src="/js/Layouts.js"></script>
+    <script type="text/javascript" src="/js/Setup.js"></script>
+    <script type="text/javascript" src="/js/LoadModels.js"></script>
+    <script type="text/javascript" src="/js/Seasonal/Christmas.js"></script>
+    <script type="text/javascript" src="/js/Seasonal/NewYears.js"></script>
+    <script type="text/javascript" src="/js/Display.js"></script>
+    <script type="text/javascript" src="/js/Scene.js"></script>
+    <script type="text/javascript" src="/js/Props.js"></script>
+    <script type="text/javascript" src="/js/Main.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+</body>
+</html>

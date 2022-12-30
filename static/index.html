@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marche</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+</head>
+<body>
+
+<div class="back-container">
+    <div class="main-container">
+    </div>
+
+</div>
+<nav>
+    <div class="nav-wrapper white">
+        <a href="#" class="brand-logo"><img src="/assets/images/logo-flat.png" class="logo-image"/></a>
+    </div>
+</nav>
+
+<ul id="slide-out" class="side-nav fixed">
+    <li id="searchButton" class="menu-item" data-menu-item="search">
+        <a class="waves-effect waves-cyan btn-flat" data-color="cyan"><i class="material-icons small">search</i>Search</a>
+    </li>
+    <li id="shoppingCart" class="menu-item" data-menu-item="shopping_cart">
+        <a class="waves-effect waves-purple btn-flat" data-color="purple"><i class="material-icons small">shopping_cart</i>My Basket</a>
+    </li>
+    <!--<li class="menu-item" data-menu-item="name_street">-->
+        <!--<a class="waves-effect waves-orange btn-flat" data-color="orange"><i class="material-icons small">font_download</i>Name A Street!</a>-->
+    <!--</li>-->
+    <!--<li class="menu-item" data-menu-item="map">-->
+        <!--<a class="waves-effect waves-blue btn-flat" data-color="blue"><i class="material-icons small">location_on</i>Marché Map</a>-->
+    <!--</li>-->
+    <li class="menu-item" data-menu-item="feedback">
+        <a class="waves-effect waves-teal btn-flat" data-color="teal"><i class="material-icons small">feedback</i>Feedback</a>
+    </li>
+</ul>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/r84/build/three.js"></script>
+<script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="/shared.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
