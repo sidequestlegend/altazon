@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Altazon Search</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/search.css" rel="stylesheet">
+</head>
+<body>
+<div class="search-container">
+    <button class="btn btn-default" onClick="window.location = 'menu.html'">Menu</button>
+    <div class="search-outer margin-top-bottom">
+        <div class="row">
+            <div class="col-xs-10">
+                <img src="/assets/images/icon.png" class="altazon-image"/>
+                <input type="text"  id="searchTerm" placeholder="Search Altazon..." class="form-control"/>
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-default" id="searchButton">Search</button>
+            </div>
+        </div>
+    </div>
+    <!--<ul class='fisheye-menu' id="fish-eye-menu">-->
+    <!--<li class="category active">-->
+    <!--<a onClick="selectItem('All',0)" >-->
+    <!--<img src='/assets/images/vendor-logos/amazon-search.png'/>-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--<li class="category">-->
+    <!--<a onClick="selectItem('Automotive',1)">-->
+    <!--<img src='/assets/images/vendor-logos/ebay-search.png'/>-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--<li class="category">-->
+    <!--<a onClick="selectItem('Books',2)">-->
+    <!--<img src='/assets/images/vendor-logos/walmart-search.png'/>-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--</ul>-->
+</div>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/r84/build/three.js"></script>
+<script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.min.js"></script>
+<script type="text/javascript" src="/shared.js"></script>
+<script type="text/javascript" src="/search.js"></script>
+</body>
+</html>

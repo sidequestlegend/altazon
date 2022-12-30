@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+<script src="https://rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+    AFRAME.registerComponent('load-zerkker', {
+        schema: {default: ''},
+        init: function () {
+            var loader = new THREE.GLTFLoader();
+            var _this = this;
+            console.log('GLTF url:',this.data);
+            loader.load(
+                this.data,
+                function ( object ) {
+                    console.log('Loaded:',object);
+                    _this.el.sceneEl.object3D.add( object.scene );
+                },
+                function( xhr ) {
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                },
+                function(error){
+                    console.log(error);
+                },
+                function(error){
+                    console.log(error);
+                });
+        }
+    });
+</script>
+
+<a-scene>
+    <a-entity position="0 10 0" load-zerkker="/assets/models/ExteriorBuilding.gltf"></a-entity>
+</a-scene>
+</body>
+</html>

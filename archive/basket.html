@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Altazon- Basket</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/search.css" rel="stylesheet">
+</head>
+<body>
+
+<!--Basket display-->
+<template id="basketDisplay">
+    <div class="basket-container"></div>
+</template>
+<!--Box display-->
+<template id="productDisplay">
+    <div class="row">
+    <div class="col-xs-2 image-container"></div>
+    <div class="col-xs-1 quantity-container"></div>
+    <div class="col-xs-6 description-container"></div>
+    <div class="col-xs-3 price-container"></div>
+    </div>
+</template>
+<!--<button class="btn btn-default" onClick="window.location = 'menu.html'">Menu</button>-->
+
+<div class="outer-container">
+    <h3>Your Baskets</h3>
+    <div id="basket-menu-container"></div>
+    <div id="main-container">
+    </div>
+    <div class="row total-line" >
+        <div class="col-xs-9 total-label">Total:</div>
+        <div class="col-xs-3 price-basket" id="basket-total">0.00</div>
+        <div class="col-xs-12">
+            <div class="btn btn-primary right" onClick="checkoutBasket('AmazonUS')">Checkout on Amazon.com</div>
+            <div class="btn btn-primary right" onClick="clearBasket('AmazonUS')">Clear Basket</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/r84/build/three.js"></script>
+<script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.min.js"></script>
+<script type="text/javascript" src="/shared.js"></script>
+<script type="text/javascript" src="/basket.js"></script>
+</body>
+</html>

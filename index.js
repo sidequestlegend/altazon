@@ -1,211 +1,164 @@
-const express = require('express');
-const http = require('http');
-const https = require('https');
-const io = require('socket.io');
-const fs = require('fs');
-const Basket = require('./Basket');
-const Layouts = require('./Layouts');
-const Config = require('./config');
-const easyrtc = require("easyrtc");
-
-let WebServer = function(){
-    this.server = this.setupServer('/static/',Config.current_environment==='production'?8443:8080);
-    this.setupSocket();
-    this.setupVendors();
-    this.setupBaloonRide();
-    this.layouts = new Layouts();
-};
-
-var obj = {};
-obj.the_prototype = {
-    name:"something"
-};
-
-
-WebServer.prototype = {
-    socketPool:{
-        // websockets grouped by client.
-    },
-    setupServer:function(directory,port){
-        let serverObject={};
-        serverObject.app=express();
-        if(Config.current_environment==='production'){
-            // serverObject.server = https.createServer({
-            //     key: fs.readFileSync(Config.environments[Config.current_environment].ssl.key).toString(),
-            //     cert: fs.readFileSync(Config.environments[Config.current_environment].ssl.cert).toString()
-            // }, serverObject.app);
-            serverObject.server = http.createServer(serverObject.app);
-        }else{
-            serverObject.server = http.createServer(serverObject.app);
-        }
-        serverObject.socket=io(serverObject.server);
-        serverObject.app.use(express.static(__dirname + directory));
-        serverObject.app.get('/', (req,res)=> {
-            res.sendFile(__dirname + directory +'/index.html');
-        });
-        serverObject.server.listen(port);
-        return serverObject;
-    },
-    setupVendors:function() {
-        this.vendors = require('./Vendors');
-    },
-    setupBaloonRide:function(){
-        setInterval(d=>{
-            // var time = new Date().getTime();
-            // var coeff = 1000 * 60 * 5;
-            // var current_time = time - Math.floor(time / coeff) * coeff;
-            this.server.socket.to("shop-floor").emit('time-sync',new Date().getTime());
-        },2000);
-
-    },
-    setupSocket:function(){
-        this.server.socket.on('connection', (socket)=>{
-            socket.on('guid',options=>{
-                socket.guid = options.guid;
-                if(!this.socketPool[socket.guid]){
-                    this.socketPool[socket.guid] = {baskets:{},position:{x:0,roty:0,z:0}};
-                }
-                this.socketPool[socket.guid][options.client] = socket;
-                socket.join(options.client);
+var Main = function(){
+    var _this = this;
+    this.menu();
+    this.shared = new Shared(this);
+    this.menu();
+    this.can_search = false;
+    this.setupSocket()
+        .then(function(result){
+            _this.socket.emit('get-position');
+            _this.socket.emit('get-vendor');
+            _this.socket.on('get-position',function(position) {
+                _this.position = position;
+                _this.updateMapPosition();
             });
-            socket.on('get-vendors',()=>{
-                if(socket.guid&&this.socketPool[socket.guid])
-                    socket.emit('get-vendors',Object.keys(this.vendors).map(d=>{
-                        return {type:d,data:this.vendors[d].data}
-                    }));
-            });
-            socket.on('set-position',position=>{
-                if(socket.guid&&this.socketPool[socket.guid]){
-                    this.socketPool[socket.guid].position = position;
-                    if(this.socketPool[socket.guid]["map"]){
-                        this.socketPool[socket.guid]["map"].emit('get-position',this.socketPool[socket.guid].position);
-                    }
-                }
-            });
-            socket.on('test-countdown',()=>{
-                this.server.socket.sockets.emit('test-countdown');
-            });
-            socket.on('get-position',position=>{
-                if(socket.guid&&this.socketPool[socket.guid])
-                    socket.emit('get-position',this.socketPool[socket.guid].position);
-            });
-            socket.on('get-layout',options=>{
-                if(socket.guid&&this.socketPool[socket.guid]&&this.layouts[options.layout])
-                    socket.emit('get-layout',this.layouts[options.layout]());
-            });
-            socket.on('get-vendor',()=>{
-                if(socket.guid&&this.socketPool[socket.guid]&&this.socketPool[socket.guid]["main_menu"]){
-                    this.socketPool[socket.guid]["main_menu"].emit('set-vendor',this.socketPool[socket.guid].vendor);
-                }
-            });
-            socket.on('open-product',(options)=>{
-                if(socket.guid&&this.socketPool[socket.guid]&&this.vendors[options.vendor])
-                    this.vendors[options.vendor].api.open(options,this.socketPool[socket.guid]);
-            });
-            socket.on('set-vendor',options=>{
-                if(socket.guid&&this.socketPool[socket.guid]){
-                    if(options.vendor){
-                        this.socketPool[socket.guid].vendor = options.vendor;
-                    }else{
-                        delete this.socketPool[socket.guid].vendor;
-                    }
-                    if(this.socketPool[socket.guid]["main_menu"]){
-                        this.socketPool[socket.guid]["main_menu"].emit('set-vendor',this.socketPool[socket.guid].vendor);
-                    }
-                }
-            });
-            socket.on('get-product',()=>{
-                if(socket.guid&&this.socketPool[socket.guid]&&this.socketPool[socket.guid].product){
-                    socket.emit('set-product',this.socketPool[socket.guid].product);
+            _this.socket.on('set-vendor',function(vendor){
+                console.log('set-vendor',vendor);
+                _this.vendor = vendor;
+                if(vendor){
+                    _this.can_search = true;
+                    _this.showSearch(true);
                 }else{
-                    socket.emit('set-product',false);
+                    _this.can_search = false;
+                    _this.showSearch(false);
                 }
             });
-            socket.on('close-menu',()=>{
-                if(socket.guid&&this.socketPool[socket.guid]){
-                    if(this.socketPool[socket.guid]["shop-floor"]){
-                        this.socketPool[socket.guid]["shop-floor"].emit('close-menu');
-                    }
+            _this.socket.on('getBaskets',function(baskets){
+                _this.displayBasket(baskets)
+            });
+            _this.socket.on('reloadBasket',function(){
+                console.log('reloading-basket')
+                setTimeout(function(){_this.socket.emit('getBasket');},750);
+            });
+        });
+};
+Main.prototype = {
+    displayBasket:function(baskets){
+        var _this = this;
+        this.current_baskets = baskets;
+        $('#basketLines').html('');
+        if(baskets.AmazonUS){
+            var total = 0;
+            baskets.AmazonUS.products.forEach(function(product){
+                var container = $('<tr>');
+                if(product.price_numeric)total+=product.price_numeric;
+                container.append('<td><img src="'+product.images[0].medium+'"/></td>');
+                container.append('<td>'+product.title+'</td>');
+                container.append('<td>'+product.quantity+'<br><i class="material-icons removeItem">delete_forever</i></td>');
+                container.append('<td>'+product.price+'</td>');
+                $('#basketLines').append(container);
+            });
+            $('#totalPrice').html("$"+((total/100).toFixed(2)))
+        }
+        if(!baskets.AmazonUS||!baskets.AmazonUS.products.length){
+            $("#basketEmpty").css('display','block');
+        }
+        $('#clearButton').click(function(){
+            _this.socket.emit('clearBasket',{vendor:"AmazonUS"});
+        });
+        $('.checkoutButton').click(function(){
+            _this.socket.emit('checkoutBasket',{vendor:"AmazonUS"});
+        });
+
+        $('.removeItem').each(function(i){
+            $(this).click(function(){
+                console.log('click');
+                _this.socket.emit('editBasket',{vendor:"AmazonUS",index:i});
+            });
+        });
+    },
+    setupSocket:function() {
+        var _this = this;
+        return this.shared
+            .setupSocket()
+            .then(function (result) {
+                _this.socket = result.socket;
+                _this.user = result.user;
+                _this.socket.on('connect', function () {
+                    _this.socket.emit('guid', {guid: result.user.user.userId, client: "main_menu"});
+                });
+            });
+    },
+    menu:function(){
+        var _this = this;
+        $(document).ready(function(){
+            $('.carousel').carousel({padding:60});
+            $('.menu-item').click(function(){
+                $('.menu-item').each(function(){
+                    var ele = $(this).find('a');
+                    ele.removeClass('btn').removeClass(ele.data('color')).removeClass('waves-light').addClass('waves'+ele.data('color')).addClass('btn-flat');
+                });
+                var ele = $(this).find('a');
+                ele.removeClass('waves'+ele.data('color')).removeClass('btn-flat').addClass('btn').addClass(ele.data('color')).addClass('waves-light');
+                switch($(this).data('menu-item')){
+                    case 'name_street':
+                        _this.name_streets();
+                        break;
+                    case 'feedback':
+                        _this.feedback();
+                        break;
+                    case 'map':
+                        _this.map();
+                        break;
+                    case 'search':
+                        _this.search();
+                        break;
+                    case 'shopping_cart':
+                        _this.basket();
+                        break;
                 }
             });
-            socket.on('set-product',options=>{
-                if(socket.guid&&this.socketPool[socket.guid]){
-                    this.socketPool[socket.guid].product = options.product;
-                    socket.emit('set-product');
-                    if(this.socketPool[socket.guid]["add_to_basket"]){
-                        this.socketPool[socket.guid]["add_to_basket"].emit('set-product',this.socketPool[socket.guid].product);
-                    }
+            $('#searchButton').trigger('click');
+        });
+    },
+    name_streets:function(){
+        $('.main-container').load('/html/google_form.html')
+    },
+    feedback:function(){
+        $('.main-container').load('/html/feedback_form.html')
+    },
+    map:function(){
+        $('.main-container').load('/html/map.html')
+    },
+    showSearch:function(show){
+        $('#searchTitle').html(show?'Search this store':'Enter a store to search...');
+        $('#searchTerm').attr('disabled',!show);
+        show?$('#theSearchButton').removeClass('disabled'):$('#theSearchButton').addClass('disabled');
+
+    },
+    search:function(){
+        var _this = this;
+        $('.main-container').load('/html/search.html',function(){
+            var search = function(){
+                if(_this.vendor){
+                    _this.socket.emit("search-page",{
+                        terms: $('#searchTerm').val()||_this.vendor.vendor.defaultSearch||"",
+                        categories:_this.vendor.vendor.vendorCategories,
+                        vendor:_this.vendor.vendor.vendorName,
+                        page: 1
+                    });
+                    _this.socket.emit('close-menu');
                 }
+            };
+            $('#theSearchButton').click(function(){
+                search();
             });
-            socket.on('search',options=>{
-                if(socket.guid&&this.socketPool[socket.guid]&&this.vendors[options.vendor])
-                    this.vendors[options.vendor].api.search(options,this.socketPool[socket.guid]);
-            });
-            socket.on('search-page',options=>{
-                if(socket.guid&&this.socketPool[socket.guid]["shop-floor"]){
-                    this.socketPool[socket.guid]["shop-floor"].emit('search-page',options);
-                }
-            });
-            socket.on('addToBasket',options=>{
-                if(this.socketPool[socket.guid]&&this.vendors[options.vendor]){
-                    if(!this.socketPool[socket.guid].baskets[options.vendor]) {
-                        this.socketPool[socket.guid].baskets[options.vendor] = new Basket();
-                    }
-                    this.socketPool[socket.guid].baskets[options.vendor].add(options.product);
-                    if(socket.guid&&this.socketPool[socket.guid]["main_menu"]){
-                        this.socketPool[socket.guid]["main_menu"].emit('getBaskets',this.socketPool[socket.guid].baskets);
-                    }
-                    socket.emit('getBaskets',this.socketPool[socket.guid].baskets);
-                }
-            });
-            socket.on('getBaskets',()=>{
-                if(this.socketPool[socket.guid]){
-                    socket.emit('getBaskets',this.socketPool[socket.guid].baskets);
-                }
-            });
-            socket.on('setQuantity',options=>{
-                if(this.socketPool[socket.guid]&&this.socketPool[socket.guid].baskets[options.vendor]){
-                    this.socketPool[socket.guid].baskets[options.vendor].setQuantity(options.index,options.quantity);
-                    if(socket.guid&&this.socketPool[socket.guid]["main_menu"]){
-                        this.socketPool[socket.guid]["main_menu"].emit('getBaskets',this.socketPool[socket.guid].baskets);
-                    }
-                    if(socket.guid&&this.socketPool[socket.guid]["shop-floor"]){
-                        this.socketPool[socket.guid]["shop-floor"].emit('getBaskets', this.socketPool[socket.guid].baskets);
-                    }
-                }
-            });
-            socket.on('editBasket',options=>{
-                if(this.socketPool[socket.guid]&&this.socketPool[socket.guid].baskets[options.vendor]){
-                    var products = this.socketPool[socket.guid].baskets[options.vendor].products;
-                    if(options.index&&products.length-1>options.index){
-                        this.socketPool[socket.guid].baskets[options.vendor].products = products.splice(options.index,1)
-                    }
-                    if(socket.guid&&this.socketPool[socket.guid]["main_menu"]) {
-                        this.socketPool[socket.guid]["main_menu"].emit('getBaskets', this.socketPool[socket.guid].baskets);
-                    }
-                    if(socket.guid&&this.socketPool[socket.guid]["shop-floor"]){
-                        this.socketPool[socket.guid]["shop-floor"].emit('getBaskets', Object.keys(this.socketPool[socket.guid].baskets));
-                    }
-                }
-            });
-            socket.on('clearBasket',options=>{
-                if(this.socketPool[socket.guid]&&this.socketPool[socket.guid].baskets[options.vendor]){
-                    delete this.socketPool[socket.guid].baskets[options.vendor];
-                    if(socket.guid&&this.socketPool[socket.guid]["main_menu"]) {
-                        this.socketPool[socket.guid]["main_menu"].emit('getBaskets', this.socketPool[socket.guid].baskets);
-                    }
-                    if(socket.guid&&this.socketPool[socket.guid]["shop-floor"]){
-                        this.socketPool[socket.guid]["shop-floor"].emit('getBaskets', Object.keys(this.socketPool[socket.guid].baskets));
-                    }
-                }
-            });
-            socket.on('checkoutBasket',options=>{
-                console.log(options);
-                if(this.socketPool[socket.guid]&&this.socketPool[socket.guid].baskets[options.vendor]&&this.socketPool[socket.guid].baskets[options.vendor].products.length){
-                    this.vendors[options.vendor].api.checkout(this.socketPool[socket.guid].baskets[options.vendor].products,this.socketPool[socket.guid]);
+            $('#searchTerm').keyup(function(e){
+                e.preventDefault();
+                if (e.keyCode === 13) {
+                    search()
                 }
             });
         });
+    },
+    basket:function(){
+        var _this = this;
+        $('.main-container').load('/html/basket.html',function(){
+            _this.socket.emit('getBaskets');
+        });
+    },
+    updateMapPosition:function(){
+
     }
 };
-new WebServer();
+var main = new Main();
